@@ -32,15 +32,15 @@ def api_to_gcs(filename):
 	print("finished uploading")
 
 # Cloud Function
-def main(event, context):
-	load_dotenv()
-	global API_KEY
-	global project
-	api_to_gcs("weather.csv")
-
-# HTTP
-# def main(request):
+# def main(event, context):
 # 	load_dotenv()
 # 	global API_KEY
 # 	global project
 # 	api_to_gcs("weather.csv")
+
+# HTTP
+def main(request):
+	load_dotenv()
+	global API_KEY
+	global project
+	api_to_gcs("weather.csv")
