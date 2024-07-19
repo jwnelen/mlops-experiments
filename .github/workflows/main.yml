@@ -34,7 +34,7 @@ jobs:
         timeout-minutes: 10
         with:
           name: "ETL-function"
-          event_trigger_type: "google.pubsub.topic.publish"
+          event_trigger_type: google.pubsub.topic.publish
           runtime: "python312"
           source_dir: "etl"
           # Entrypoint is the function name in the source code
