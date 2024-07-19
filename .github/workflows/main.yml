@@ -6,16 +6,16 @@ jobs:
       id-token: 'write'
 
     steps:
-      - uses: 'actions/checkout@v4'
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v2'
-        with:
-          project_id: 'my-project'
-          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-  
-      - id: 'deploy'
-        uses: 'google-github-actions/deploy-cloud-functions@v3'
-        timeout-minutes: 10
-        with:
-          name: 'my-function'
-          runtime: 'nodejs22'
+    - uses: 'actions/checkout@v4'
+      
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      # - id: 'deploy'
+      #   uses: 'google-github-actions/deploy-cloud-functions@v3'
+      #   timeout-minutes: 10
+      #   with:
+      #     name: 'my-function'
+      #     runtime: 'nodejs22'
