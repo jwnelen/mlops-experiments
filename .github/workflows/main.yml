@@ -34,6 +34,7 @@ jobs:
         with:
           # Cloud function name
           name: "ETL-function"
-          runtime: "Python 3.12"
+          runtime: "Python312"
           source_dir: "etl"
           entry_point: "main"
+          environment_variables: "API_KEY=${{ env.API_KEY }}"
