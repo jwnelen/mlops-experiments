@@ -10,14 +10,18 @@ current_endpoint = "current.json"
 
 API_KEY, project = None, None
 
-def api_to_gcs(filename):
-	def get_current_weather(q):
-		url = f"{base_url}{current_endpoint}?q={q}"
-		response = requests.get(url, headers={"key": API_KEY})
-		return response.json()
+def get_current_weather(q):
+	url = f"{base_url}{current_endpoint}?q={q}"
+	response = requests.get(url, headers={"key": API_KEY})
+	return response.json()
 
+def api_to_gcs(filename):
 	q = "Rotterdam"
 	data = get_current_weather(q)
+	print(data)
+	if "error" in data:
+		print(data["error"]["message"])
+		return
 	curr = data["current"]
 	del curr["condition"]
 
@@ -47,3 +51,6 @@ def main(request):
 	API_KEY = os.getenv("API_KEY")
 	project = os.getenv("PROJECT")
 	api_to_gcs("weather.csv")
+
+if __name__ == "__main__":
+	main(None)
