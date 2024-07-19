@@ -31,8 +31,16 @@ def api_to_gcs(filename):
 	blob.upload_from_string(df.to_csv(index=False), "text/csv")
 	print("finished uploading")
 
-def main(data, context):
+# Cloud Function
+def main(event, context):
 	load_dotenv()
 	global API_KEY
 	global project
 	api_to_gcs("weather.csv")
+
+# HTTP
+# def main(request):
+# 	load_dotenv()
+# 	global API_KEY
+# 	global project
+# 	api_to_gcs("weather.csv")

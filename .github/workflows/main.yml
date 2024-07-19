@@ -34,13 +34,11 @@ jobs:
         timeout-minutes: 10
         with:
           name: "ETL-function"
+          event_trigger_type: "google.pubsub.topic.publish"
+          event_trigger_pubsub_topic: "projects/mlops-429911/topics/fpl"
           runtime: "python312"
           source_dir: "etl"
           # Entrypoint is the function name in the source code
           entry_point: "main"
           environment_variables: |-
             API_KEY=${{ env.API_KEY }}
-
-      - name: "test URL"
-        run: |
-          curl ${{ steps.deploy.outputs.url }}'
