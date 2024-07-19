@@ -29,12 +29,17 @@ jobs:
           credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
 
       - name: "deploy"
+        id: deploy
         uses: "google-github-actions/deploy-cloud-functions@v3"
         timeout-minutes: 10
         with:
-          # Cloud function name
           name: "ETL-function"
           runtime: "python312"
           source_dir: "etl"
-          entry_point: "api-loader.main"
-          environment_variables: "API_KEY=${{ env.API_KEY }}"
+          entry_point: "api-loader"
+          secrets: |-
+            API_KEY=${{ secrets.API_KEY }}
+
+      - name: "test URL"
+        run: |
+          curl ${{ steps.deploy.outputs.url }}'

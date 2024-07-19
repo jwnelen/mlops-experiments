@@ -33,10 +33,7 @@ def api_to_gcs(filename):
 	print("finished uploading")
 
 def main(data, context):
-	api_to_gcs("weather.csv")
-
-if __name__ == "__main__":
 	load_dotenv()
-	API_KEY = os.getenv("API_KEY")
-	project = os.getenv("PROJECT")
-	main(None, None)
+	global API_KEY
+	global project
+	api_to_gcs("weather.csv")
