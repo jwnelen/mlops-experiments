@@ -37,8 +37,8 @@ jobs:
           runtime: "python312"
           source_dir: "etl"
           entry_point: "api-loader"
-          secrets: |-
-            API_KEY=${{ secrets.API_KEY }}
+          environment_variables: |-
+            API_KEY="${{ secrets.API_KEY }}"
 
       - name: "test URL"
         run: |
