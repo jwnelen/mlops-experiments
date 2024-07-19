@@ -38,6 +38,8 @@ def api_to_gcs(filename):
 	blob.upload_from_string(df.to_csv(index=False), "text/csv")
 	print("finished uploading")
 
+	return "finished"
+
 # HTTP
 def main(request):
 	global API_KEY, project
