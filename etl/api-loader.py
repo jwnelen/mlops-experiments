@@ -8,11 +8,6 @@ from google.cloud import storage
 base_url = "http://api.weatherapi.com/v1/"
 current_endpoint = "current.json"
 
-if __name__ == "__main__":
-	load_dotenv(".env") 
-	API_KEY = os.getenv("API_KEY")
-	project = os.getenv("PROJECT_ID")
-
 def api_to_gcs(filename):
 	def get_current_weather(q):
 		url = f"{base_url}{current_endpoint}?q={q}"
@@ -26,8 +21,22 @@ def api_to_gcs(filename):
 
 	df = pd.DataFrame(curr, index=[0])
 
-	client = storage.Client(project=project)
+	print(df.shape)
+
+	client = storage.Client(project=project, credentials=)
 	bucket = client.get_bucket('example-storage-bucket')
+
+	print(bucket.name)
 
 	blob = bucket.blob(filename)
 	blob.upload_from_string(df.to_csv(index=False), "text/csv")
+	print("finished uploading")
+
+def main(data, context):
+	api_to_gcs("weather.csv")
+
+if __name__ == "__main__":
+	load_dotenv()
+	API_KEY = os.getenv("API_KEY")
+	project = os.getenv("PROJECT")
+	main(None, None)
