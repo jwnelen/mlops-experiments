@@ -1,11 +1,14 @@
 import requests
 import pandas as pd
+import os
 
 from dotenv import load_dotenv
 from google.cloud import storage
 
 base_url = "http://api.weatherapi.com/v1/"
 current_endpoint = "current.json"
+
+API_KEY, project = None, None
 
 def api_to_gcs(filename):
 	def get_current_weather(q):
@@ -41,6 +44,6 @@ def api_to_gcs(filename):
 # HTTP
 def main(request):
 	load_dotenv()
-	global API_KEY
-	global project
+	API_KEY = os.getenv("API_KEY")
+	project = os.getenv("PROJECT")
 	api_to_gcs("weather.csv")
