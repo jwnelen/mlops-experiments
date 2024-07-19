@@ -33,10 +33,7 @@ jobs:
         timeout-minutes: 10
         with:
           # Cloud function name
-          name: "ETL"
+          name: "ETL-function"
           runtime: "Python 3.12"
           source_dir: "etl"
           entry_point: "main"
-          secrets: |-
-            "PROJECT_ID=${{ secrets.PROJECT_ID }}"
-            "API_KEY=${{ secrets.API_KEY }}"
