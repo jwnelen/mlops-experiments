@@ -36,7 +36,7 @@ jobs:
           name: "ETL-function"
           runtime: "python312"
           source_dir: "etl"
-          entry_point: "api-loader"
+          entry_point: "main"
           environment_variables: |-
             API_KEY=${{ env.API_KEY }}
 
