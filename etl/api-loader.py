@@ -23,7 +23,7 @@ def api_to_gcs(filename):
 
 	print(df.shape)
 
-	client = storage.Client(project=project, credentials=)
+	client = storage.Client(project=project)
 	bucket = client.get_bucket('example-storage-bucket')
 
 	print(bucket.name)
